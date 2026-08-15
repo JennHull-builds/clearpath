@@ -34,6 +34,12 @@ yarn-error.log*
 .env*
 !.env.example
 
+# Chappie private — safety net if files are ever copied into this repo
+USER.md
+user.md
+chappie/
+offers/
+
 # vercel
 .vercel
 

@@ -22,7 +22,7 @@ brain dump (optional) → capacity → goal(s) → structured path
 | Path | Job |
 |------|-----|
 | `SOUL.md` | Public voice |
-| `lib/soul.ts` | System prompt (loaded from SOUL + rules) |
+| `lib/soul.ts` | System prompt + user prompt builder |
 | `lib/schema.ts` | Zod in/out |
 | `lib/path.ts` | One agent call |
 | `app/api/path/route.ts` | POST only |

@@ -13,6 +13,7 @@ Clearpath — *Park the noise. See one path.* Public build-in-public product. v0
 - **Voice:** jolly, permission-giving, capacity-sized. No hustle culture.
 - **Ship pretty.** UI quality is part of the product — this is a portfolio demo too.
 - **Secrets:** `.env` local only. Use `.env.example` for docs.
+- **Spillover guard:** `.gitignore` blocks Chappie private files if copied by mistake (`USER.md`, `chappie/`, etc.). Clearpath voice lives in `SOUL.md` here — separate file, separate soul.
 
 ## When building
 

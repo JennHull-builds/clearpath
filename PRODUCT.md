@@ -93,5 +93,4 @@ Keep UI stepped and calm — not generic chat slop. Product design quality matte
 ## Privacy boundary
 
 - No imports from `chappie` repo
-- No `SOUL.md`, `USER.md`, skills, or memory files from Chappie
-- Clearpath has its own voice and prompts, written fresh for this product
+- No Chappie `USER.md`, skills, or memory files — Clearpath has its own `SOUL.md`, written fresh for this product
