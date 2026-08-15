@@ -1,0 +1,21 @@
+# Clearpath
+
+Read `PRODUCT.md` before building — it is the source of truth for v0.1.
+
+## What this is
+
+Clearpath — *Park the noise. See one path.* Public build-in-public product. v0.1 = capacity-aware pick or breakdown agent with whimsical, anti-grind voice.
+
+## Hard rules
+
+- **Not Chappie.** Never copy or reference the private `chappie` repo (SOUL, USER, skills, memory). Inspired patterns only; fresh prompts and copy.
+- **v0.1 scope only.** No auth, history, or feature creep unless Jen asks.
+- **Voice:** jolly, permission-giving, capacity-sized. No hustle culture.
+- **Ship pretty.** UI quality is part of the product — this is a portfolio demo too.
+- **Secrets:** `.env` local only. Use `.env.example` for docs.
+
+## When building
+
+1. Check `PRODUCT.md` for flows and boundaries.
+2. One flow at a time (pick one OR break it down — don't build both at once unless scoped).
+3. Keep commits build-in-public friendly — no personal/private content.
