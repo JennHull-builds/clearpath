@@ -10,7 +10,7 @@
 
 Someone shows up **overwhelmed**. Head full. Not enough capacity for all of it.
 
-They do **not** choose a product mode. They dump what's buzzing, say how much they have in the tank, and Clearpath gives them **one path for today**.
+They do **not** choose a product mode. They dump what's buzzing, say how much juice they have, and Clearpath gives them **one path for today**.
 
 Pick-one and break-it-down are **how the agent thinks**, not what the user clicks first.
 
@@ -29,7 +29,7 @@ That's the product.
 ```
 Landing (felt, not features)
   → "What's buzzing?"  (brain dump — tasks, noise, the fuzzy goal, all of it)
-  → "How many spoons today?"  (low / medium / high)
+  → "How much juice?"  (low / medium / high)
   → one path
 ```
 
@@ -80,4 +80,4 @@ Voice: jolly, whimsical, permission-giving. Anti-grind. Never "just push through
 
 ## For the next agent (Clearpath repo)
 
-One front door: dump → spoons → one path. Pick/break are agent routing, not landing cards. Don't add a mode picker. Don't add features unless asked.
+One front door: dump → juice → one path. Pick/break are agent routing, not landing cards. Don't add a mode picker. Don't add features unless asked.

@@ -2,7 +2,7 @@
 
 Read `SOUL.md` and `ARCHITECTURE.md` before changing behavior.
 
-v0.1 is one workflow: dump → spoons → one path. Pick/break are agent routing, not landing cards. No auth. No history.
+v0.1 is one workflow: dump → juice → one path. Pick/break are agent routing, not landing cards. No auth. No history.
 
 Voice stays permission-giving. No grind. No extra steps.
 

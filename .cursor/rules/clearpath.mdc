@@ -1,22 +1,24 @@
 # Clearpath
 
-Read `PRODUCT.md` before building — it is the source of truth for v0.1.
+Read `PRODUCT.md` and `DESIGN.md` before building — product flow and visual contract.
 
 ## What this is
 
-Clearpath — *Park the noise. See one path.* Public build-in-public product. v0.1 = dump → spoons → one path. Pick/break are how the agent routes, not what the user clicks first.
+Clearpath — *Park the noise. See one path.* Public build-in-public product. v0.1 = dump → juice → one path. Pick/break are how the agent routes, not what the user clicks first.
 
 ## Hard rules
 
 - **Not Chappie.** Never copy or reference the private `chappie` repo (SOUL, USER, skills, memory). Inspired patterns only; fresh prompts and copy.
 - **v0.1 scope only.** No auth, history, or feature creep unless Jen asks.
 - **Voice:** jolly, permission-giving, capacity-sized. No hustle culture.
+- **Look:** tactile muted bands, white type on colour, dotted field (`DESIGN.md` + `_ (21).jpeg`). Not woods/Kinfolk. No shadcn. CSS + View Transitions only.
+- **Energy unit:** `ENERGY_UNIT` in `lib/energy.ts` is juice (placeholder). API stays `low | medium | high`.
 - **Ship pretty.** UI quality is part of the product — this is a portfolio demo too.
 - **Secrets:** `.env` local only. Use `.env.example` for docs.
 - **Spillover guard:** `.gitignore` blocks Chappie private files if copied by mistake (`USER.md`, `chappie/`, etc.). Clearpath voice lives in `SOUL.md` here — separate file, separate soul.
 
 ## When building
 
-1. Check `PRODUCT.md` for flows and boundaries.
+1. Check `PRODUCT.md` for flows and boundaries. Check `DESIGN.md` before touching UI.
 2. One front door. Don't add a mode picker. Pick/break stay behind the dump.
 3. Keep commits build-in-public friendly — no personal/private content.

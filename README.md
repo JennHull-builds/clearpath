@@ -6,7 +6,7 @@
 
 ---
 
-Your head is loud. Your capacity isn't infinite. Clearpath helps you **park the buzzing stuff**, check in with how many spoons you've got, and walk away with **one path** — sized for today, not a lecture.
+Your head is loud. Your capacity isn't infinite. Clearpath helps you **park the buzzing stuff**, check in with how much juice you've got, and walk away with **one path** — sized for today, not a lecture.
 
 No hustle. No guilt. No "just push through."
 
@@ -17,7 +17,7 @@ No hustle. No guilt. No "just push through."
 ## How it works
 
 1. **What's buzzing?** — dump the tasks, the noise, the fuzzy goal. All of it. No sorting.
-2. **How many spoons today?** — low, medium, or high
+2. **How much juice?** — low, medium, or high
 3. **One path** — sized for today. The rest waits, guilt-free.
 
 You don't pick a mode. Clearpath notices the shape and routes: a sized pick when two things compete, a gentle breakdown when it's one fuzzy blob.
@@ -47,7 +47,7 @@ Next.js 16 · React 19 · Tailwind v4 · AI SDK · Zod · Gemini (Google AI Stud
 
 ## Contributing / spec
 
-Building in public. Product scope, voice, and v0.1 boundaries live in [`PRODUCT.md`](./PRODUCT.md).
+Building in public. Product scope, voice, and v0.1 boundaries live in [`PRODUCT.md`](./PRODUCT.md). Visual contract: [`DESIGN.md`](./DESIGN.md).
 
 Ideas and issues welcome — keep it kind.
 

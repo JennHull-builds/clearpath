@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     return NextResponse.json(result);
   } catch (error) {
     const message =
-      error instanceof Error ? error.message : "The clearing got foggy. Try again.";
+      error instanceof Error ? error.message : "Couldn't find a path just then. Try again?";
     return NextResponse.json({ error: message }, { status: 502 });
   }
 }

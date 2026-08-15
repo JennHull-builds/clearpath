@@ -3,7 +3,7 @@
 v0.1 is one workflow. No accounts. No history. Refresh = gone.
 
 ```
-What's buzzing? → How many spoons? → one path
+What's buzzing? → How much juice? → one path
                          ↓
               agent notices the shape
          pick (two competing)     break (fuzzy blob)
@@ -23,12 +23,14 @@ Pick and break are routing behind the dump — not landing cards.
 | Path | Job |
 |------|-----|
 | `SOUL.md` | Public voice |
+| `DESIGN.md` | Visual contract (bands, type, motion, juice placeholder) |
 | `lib/soul.ts` | System prompt + user prompt builder |
+| `lib/energy.ts` | `ENERGY_UNIT` placeholder (`juice`) |
 | `lib/schema.ts` | Zod in/out |
 | `lib/model.ts` | Model wiring (Gemini via Google AI Studio) |
 | `lib/path.ts` | One agent call (notices shape, returns one path) |
 | `app/api/path/route.ts` | POST only |
-| `components/clearpath-app.tsx` | Stepped UI: dump → spoons → path |
+| `components/clearpath-app.tsx` | Stepped UI: dump → juice → path |
 
 ## Out of scope (v0.1)
 
