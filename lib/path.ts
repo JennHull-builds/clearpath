@@ -1,44 +1,22 @@
 import { generateText, Output } from "ai";
+import { getPathModel } from "@/lib/model";
 import {
-  breakOutputSchema,
-  pickOutputSchema,
+  routedOutputSchema,
   type PathRequest,
   type PathResult,
 } from "@/lib/schema";
 import { SYSTEM_PROMPT, buildUserPrompt } from "@/lib/soul";
 
-const MODEL = "openai/gpt-5.4";
-
 export async function generatePath(input: PathRequest): Promise<PathResult> {
-  const prompt = buildUserPrompt(input);
-
-  if (input.mode === "pick") {
-    const { output } = await generateText({
-      model: MODEL,
-      system: SYSTEM_PROMPT,
-      prompt,
-      output: Output.object({
-        name: "ClearpathPick",
-        description: "One path: which task now, which waits, and how to start.",
-        schema: pickOutputSchema,
-      }),
-    });
-
-    if (!output) {
-      throw new Error("Clearpath went quiet. Try once more.");
-    }
-
-    return { mode: "pick", path: output };
-  }
-
   const { output } = await generateText({
-    model: MODEL,
+    model: getPathModel(),
     system: SYSTEM_PROMPT,
-    prompt,
+    prompt: buildUserPrompt(input),
     output: Output.object({
-      name: "ClearpathBreak",
-      description: "A small breakdown with one start-here.",
-      schema: breakOutputSchema,
+      name: "ClearpathPath",
+      description:
+        "One path. Notice pick vs break from the dump. Never a menu.",
+      schema: routedOutputSchema,
     }),
   });
 
@@ -46,5 +24,13 @@ export async function generatePath(input: PathRequest): Promise<PathResult> {
     throw new Error("Clearpath went quiet. Try once more.");
   }
 
-  return { mode: "break", path: output };
+  if (output.shape === "pick" && output.pick) {
+    return { mode: "pick", path: output.pick };
+  }
+
+  if (output.shape === "break" && output.breakdown) {
+    return { mode: "break", path: output.breakdown };
+  }
+
+  throw new Error("Clearpath went quiet. Try once more.");
 }

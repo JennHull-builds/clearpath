@@ -3,21 +3,10 @@ import { z } from "zod";
 export const capacitySchema = z.enum(["low", "medium", "high"]);
 export type Capacity = z.infer<typeof capacitySchema>;
 
-export const pathRequestSchema = z.discriminatedUnion("mode", [
-  z.object({
-    mode: z.literal("pick"),
-    capacity: capacitySchema,
-    dump: z.string(),
-    taskA: z.string().min(1).max(280),
-    taskB: z.string().min(1).max(280),
-  }),
-  z.object({
-    mode: z.literal("break"),
-    capacity: capacitySchema,
-    dump: z.string(),
-    goal: z.string().min(1).max(500),
-  }),
-]);
+export const pathRequestSchema = z.object({
+  dump: z.string().min(1).max(4000),
+  capacity: capacitySchema,
+});
 
 export type PathRequest = z.infer<typeof pathRequestSchema>;
 
@@ -56,8 +45,23 @@ export const breakOutputSchema = z.object({
   note: z.string().describe("Permission-giving encouragement. No shoulds."),
 });
 
+export const routedOutputSchema = z.object({
+  shape: z
+    .enum(["pick", "break"])
+    .describe(
+      "pick: two competing things. break: one fuzzy goal. Messy pile: choose one shape, never a menu.",
+    ),
+  pick: pickOutputSchema
+    .optional()
+    .describe("Required when shape is pick. Omit when break."),
+  breakdown: breakOutputSchema
+    .optional()
+    .describe("Required when shape is break. Omit when pick."),
+});
+
 export type PickOutput = z.infer<typeof pickOutputSchema>;
 export type BreakOutput = z.infer<typeof breakOutputSchema>;
+export type RoutedOutput = z.infer<typeof routedOutputSchema>;
 
 export type PathResult =
   | { mode: "pick"; path: PickOutput }

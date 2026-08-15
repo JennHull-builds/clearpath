@@ -16,7 +16,7 @@ const sans = Figtree({
 export const metadata: Metadata = {
   title: "Clearpath — Park the noise. See one path.",
   description:
-    "Head too full, limited capacity. Park the noise, then pick one thing or break a fuzzy goal into a start.",
+    "Head too full, limited capacity. Dump what's buzzing, say how many spoons you've got, get one path for today.",
 };
 
 export default function RootLayout({

@@ -3,8 +3,7 @@
 import { useState, type ReactNode } from "react";
 import type { Capacity, PathRequest, PathResult } from "@/lib/schema";
 
-type Mode = "pick" | "break";
-type Step = "choose" | "dump" | "capacity" | "goals" | "path";
+type Step = "dump" | "capacity" | "path";
 
 const CAPACITY: { value: Capacity; label: string; hint: string }[] = [
   { value: "low", label: "Low", hint: "A few spoons left" },
@@ -13,42 +12,25 @@ const CAPACITY: { value: Capacity; label: string; hint: string }[] = [
 ];
 
 export function ClearpathApp() {
-  const [step, setStep] = useState<Step>("choose");
-  const [mode, setMode] = useState<Mode | null>(null);
+  const [step, setStep] = useState<Step>("dump");
   const [dump, setDump] = useState("");
-  const [capacity, setCapacity] = useState<Capacity | null>(null);
-  const [taskA, setTaskA] = useState("");
-  const [taskB, setTaskB] = useState("");
-  const [goal, setGoal] = useState("");
   const [result, setResult] = useState<PathResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  function choose(next: Mode) {
-    setMode(next);
-    setStep("dump");
-  }
-
   function reset() {
-    setStep("choose");
-    setMode(null);
+    setStep("dump");
     setDump("");
-    setCapacity(null);
-    setTaskA("");
-    setTaskB("");
-    setGoal("");
     setResult(null);
     setError(null);
     setLoading(false);
   }
 
-  async function findPath() {
-    if (!mode || !capacity) return;
-
-    const payload: PathRequest =
-      mode === "pick"
-        ? { mode, capacity, dump, taskA: taskA.trim(), taskB: taskB.trim() }
-        : { mode, capacity, dump, goal: goal.trim() };
+  async function findPath(nextCapacity: Capacity) {
+    const payload: PathRequest = {
+      dump: dump.trim(),
+      capacity: nextCapacity,
+    };
 
     setLoading(true);
     setError(null);
@@ -75,11 +57,6 @@ export function ClearpathApp() {
     }
   }
 
-  const canSubmit =
-    mode === "pick"
-      ? taskA.trim().length > 0 && taskB.trim().length > 0
-      : goal.trim().length > 0;
-
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5 py-10 sm:py-16">
       <header className="mb-10">
@@ -91,106 +68,58 @@ export function ClearpathApp() {
         </h1>
       </header>
 
-      {step === "choose" && (
-        <section className="grid gap-3">
-          <p className="text-bark mb-2 text-lg">What do you need?</p>
-          <Choice
-            title="Pick one"
-            body="Two things. One slot. We'll size the start — then the other waits, guilt-free."
-            onClick={() => choose("pick")}
-          />
-          <Choice
-            title="Break it down"
-            body="A fuzzy goal. We'll cut it into a few pieces and point at start here."
-            onClick={() => choose("break")}
-          />
-        </section>
-      )}
-
       {step === "dump" && (
         <section className="grid gap-4">
-          <p className="text-lg text-ink">{"Anything buzzing that isn't the thing?"}</p>
-          <p className="text-bark -mt-2 text-sm">Park it. No sorting required.</p>
+          <p className="text-lg text-ink">{"What's buzzing?"}</p>
+          <p className="text-bark -mt-2 text-sm">
+            Tasks, noise, the fuzzy goal — all of it. No sorting.
+          </p>
           <textarea
             value={dump}
             onChange={(event) => setDump(event.target.value)}
-            rows={5}
-            placeholder="Emails, dishes, that weird thought about Tuesday…"
+            rows={7}
+            maxLength={4000}
+            placeholder="The responsible thing, the fun thing, dishes, that email, the vague project…"
             className="rounded-2xl border border-moss/15 bg-white/70 px-4 py-3 text-ink placeholder:text-bark/50 outline-none focus:border-fern"
           />
-          <div className="flex gap-3">
-            <Ghost onClick={() => setStep("choose")}>Back</Ghost>
-            <Primary onClick={() => setStep("capacity")}>
-              {dump.trim() ? "Parked. Next." : "Skip — nothing to park"}
-            </Primary>
-          </div>
+          <Primary
+            onClick={() => setStep("capacity")}
+            disabled={!dump.trim()}
+          >
+            Parked. Next.
+          </Primary>
         </section>
       )}
 
       {step === "capacity" && (
         <section className="grid gap-4">
-          <p className="text-lg text-ink">How much capacity today?</p>
-          <div className="grid gap-3">
-            {CAPACITY.map((item) => (
-              <button
-                key={item.value}
-                type="button"
-                onClick={() => {
-                  setCapacity(item.value);
-                  setStep("goals");
-                }}
-                className="rounded-2xl border border-moss/15 bg-white/70 px-5 py-4 text-left transition hover:border-fern hover:bg-mist"
-              >
-                <span className="font-display text-xl text-moss">{item.label}</span>
-                <span className="text-bark mt-1 block text-sm">{item.hint}</span>
-              </button>
-            ))}
-          </div>
-          <Ghost onClick={() => setStep("dump")}>Back</Ghost>
-        </section>
-      )}
-
-      {step === "goals" && mode === "pick" && (
-        <section className="grid gap-4">
-          <p className="text-lg text-ink">The two things competing.</p>
-          <Field
-            label="Task A"
-            value={taskA}
-            onChange={setTaskA}
-            placeholder="The responsible one, maybe"
-          />
-          <Field
-            label="Task B"
-            value={taskB}
-            onChange={setTaskB}
-            placeholder="The fun one, or the other necessary one"
-          />
-          <Actions
-            onBack={() => setStep("capacity")}
-            onGo={findPath}
-            disabled={!canSubmit || loading}
-            loading={loading}
-          />
-          {error && <ErrorNote message={error} />}
-        </section>
-      )}
-
-      {step === "goals" && mode === "break" && (
-        <section className="grid gap-4">
-          <p className="text-lg text-ink">{"What's the fuzzy goal?"}</p>
-          <textarea
-            value={goal}
-            onChange={(event) => setGoal(event.target.value)}
-            rows={4}
-            placeholder="Ship the demo. Clean the kitchen. Understand agents. Rough is fine."
-            className="rounded-2xl border border-moss/15 bg-white/70 px-4 py-3 text-ink placeholder:text-bark/50 outline-none focus:border-fern"
-          />
-          <Actions
-            onBack={() => setStep("capacity")}
-            onGo={findPath}
-            disabled={!canSubmit || loading}
-            loading={loading}
-          />
+          <p className="text-lg text-ink">How many spoons today?</p>
+          {loading ? (
+            <p className="text-bark text-sm">Clearing a path…</p>
+          ) : (
+            <div className="grid gap-3">
+              {CAPACITY.map((item) => (
+                <button
+                  key={item.value}
+                  type="button"
+                  onClick={() => {
+                    void findPath(item.value);
+                  }}
+                  className="rounded-2xl border border-moss/15 bg-white/70 px-5 py-4 text-left transition hover:border-fern hover:bg-mist"
+                >
+                  <span className="font-display text-xl text-moss">
+                    {item.label}
+                  </span>
+                  <span className="text-bark mt-1 block text-sm">
+                    {item.hint}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
+          {!loading && (
+            <Ghost onClick={() => setStep("dump")}>Back</Ghost>
+          )}
           {error && <ErrorNote message={error} />}
         </section>
       )}
@@ -206,72 +135,6 @@ export function ClearpathApp() {
         </section>
       )}
     </main>
-  );
-}
-
-function Choice({
-  title,
-  body,
-  onClick,
-}: {
-  title: string;
-  body: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="rounded-3xl border border-moss/15 bg-white/70 px-6 py-5 text-left transition hover:border-fern hover:bg-mist"
-    >
-      <span className="font-display text-2xl text-moss">{title}</span>
-      <span className="text-bark mt-2 block text-sm leading-relaxed">{body}</span>
-    </button>
-  );
-}
-
-function Field({
-  label,
-  value,
-  onChange,
-  placeholder,
-}: {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  placeholder: string;
-}) {
-  return (
-    <label className="grid gap-2">
-      <span className="text-sm text-bark">{label}</span>
-      <input
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={placeholder}
-        className="rounded-2xl border border-moss/15 bg-white/70 px-4 py-3 text-ink placeholder:text-bark/50 outline-none focus:border-fern"
-      />
-    </label>
-  );
-}
-
-function Actions({
-  onBack,
-  onGo,
-  disabled,
-  loading,
-}: {
-  onBack: () => void;
-  onGo: () => void;
-  disabled: boolean;
-  loading: boolean;
-}) {
-  return (
-    <div className="flex gap-3">
-      <Ghost onClick={onBack}>Back</Ghost>
-      <Primary onClick={onGo} disabled={disabled}>
-        {loading ? "Clearing a path…" : "See the path"}
-      </Primary>
-    </div>
   );
 }
 

@@ -11,6 +11,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^4.0.44",
     "ai": "^7.0.66",
     "next": "16.3.1",
     "react": "19.2.8",

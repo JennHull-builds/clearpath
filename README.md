@@ -16,20 +16,11 @@ No hustle. No guilt. No "just push through."
 
 ## How it works
 
-1. **Park it** — optional brain dump for the noise
-2. **Check capacity** — low, medium, or high (honest spoons, not performance)
-3. **Get one path** — pick between two things, or break a big goal into bite-sized steps
+1. **What's buzzing?** — dump the tasks, the noise, the fuzzy goal. All of it. No sorting.
+2. **How many spoons today?** — low, medium, or high
+3. **One path** — sized for today. The rest waits, guilt-free.
 
----
-
-## Two flows
-
-### Pick one
-Two tasks, one slot.  
-*Example:* 15 minutes of the necessary thing → then the fun one, guilt-free.
-
-### Break it down
-One fuzzy goal + today's capacity → subtasks with estimates and a clear **start here**.
+You don't pick a mode. Clearpath notices the shape and routes: a sized pick when two things compete, a gentle breakdown when it's one fuzzy blob.
 
 ---
 
@@ -37,20 +28,20 @@ One fuzzy goal + today's capacity → subtasks with estimates and a clear **star
 
 ```bash
 cp .env.example .env.local
-# add AI_GATEWAY_API_KEY — https://vercel.com/docs/ai-gateway
+# add GOOGLE_GENERATIVE_AI_API_KEY — https://aistudio.google.com/apikey
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-On Vercel, AI Gateway uses OIDC — no API key needed in production.
+Uses Gemini via Google AI Studio. Gemini app / Google AI Pro does not include API access — you still need a Studio key. Flash models are on the free API tier.
 
 ---
 
 ## Stack
 
-Next.js 16 · React 19 · Tailwind v4 · AI SDK · Zod · Vercel AI Gateway
+Next.js 16 · React 19 · Tailwind v4 · AI SDK · Zod · Gemini (Google AI Studio)
 
 ---
 

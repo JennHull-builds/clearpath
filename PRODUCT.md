@@ -2,95 +2,82 @@
 
 **Tagline:** Park the noise. See one path.
 
-**Build in public.** MIT licensed. This repo is separate from Chappie (Jen's private coach) — do not reference, copy, or import Chappie files, prompts, or memory.
+**Build in public.** MIT licensed. Separate from Jen's private coach repo — do not import or copy private files from there.
 
 ---
 
-## Problem
+## The point (do not lose this)
 
-Head too full, limited capacity. User needs to park distractions, then either **pick one thing** or **break down** a fuzzy goal — sized to how much energy they have today.
+Someone shows up **overwhelmed**. Head full. Not enough capacity for all of it.
 
----
+They do **not** choose a product mode. They dump what's buzzing, say how much they have in the tank, and Clearpath gives them **one path for today**.
 
-## v0.1 scope (lock this)
-
-**In:**
-- Optional brain dump (park distractions)
-- Capacity input (low / medium / high — or daily capacity setting)
-- Goal input (one or two competing tasks, OR one big fuzzy goal)
-- Agent response (pick or breakdown)
-- Polished, whimsical UI
-- Deployed demo URL
-
-**Out (later):**
-- Auth, accounts, history, persistence
-- Chappie branding or private coach features
-- Toxic grind / hustle language
+Pick-one and break-it-down are **how the agent thinks**, not what the user clicks first.
 
 ---
 
-## Two flows
+## User story
 
-### 1. Pick one
+> I'm fried. There's a responsible thing, a fun thing, and a pile of noise. I don't know where to start. I just want one kind next step — sized to today — and permission to leave the rest.
 
-**Input example:** Two tasks — one responsible, one fun. Capacity for only one.
-
-**Output example:** "Do 15 min of the suck, then enjoy the fun one guilt-free."
-
-### 2. Break it down
-
-**Input example:** "Design a landing page" + daily capacity set.
-
-**Output example:** Breakdown into tasks and tiny subtasks with capacity estimates + clear **start here**. Motivating, supportive — never toxic positivity or grind culture.
+That's the product.
 
 ---
 
-## Agent voice
-
-- Jolly, whimsical, warm
-- Permission-giving (guilt-free fun is valid)
-- Sized to capacity — never "just push through"
-- Anti-grind, anti-hustle
-- Supportive without being saccharine
-
-**Tone examples (use as north star, don't copy verbatim every time):**
-- Low capacity + two tasks → permission to do a small slice of the hard thing, then the fun thing
-- Big goal → gentle breakdown with estimates, one obvious first step
-
----
-
-## UX flow
+## One front door
 
 ```
-Landing
-  → optional brain dump ("park it")
-  → capacity (3 buttons or daily setting)
-  → what's on your plate? (goal / tasks)
-  → agent responds (pick OR breakdown — route by input shape or explicit mode)
+Landing (felt, not features)
+  → "What's buzzing?"  (brain dump — tasks, noise, the fuzzy goal, all of it)
+  → "How many spoons today?"  (low / medium / high)
+  → one path
 ```
 
-Keep UI stepped and calm — not generic chat slop. Product design quality matters.
+**No** first screen that says "Pick one" vs "Break it down." That's developer language. A stuck person cannot classify their own stuckness.
 
 ---
 
-## Tech (suggested)
+## What the agent does (internals)
 
-- Next.js (already scaffolded)
-- Vercel AI SDK for agent calls
-- Deploy on Vercel
-- `.env.example` for API keys — never commit secrets
+From the dump + capacity, the agent **notices** the shape and responds:
+
+| What's in the dump | Path shape |
+|--------------------|------------|
+| Two competing things (duty vs fun, A vs B) | Sized pick — e.g. 15 min of the necessary thing, then the fun one guilt-free |
+| One big fuzzy blob | Gentle breakdown — a few subtasks, estimates, **start here** |
+| A messy pile of both | Park the noise as weather, then one path anyway — pick *or* start-here, not a menu |
+
+Always: one path. Never "here are your two options, pick a feature."
+
+---
+
+## Output (what they see)
+
+- One next action, sized to capacity
+- Why this, in one warm line (permission, not lecture)
+- If relevant: the rest waits — guilt-free
+- If breakdown: 3–5 small steps, one marked **start here**
+
+Voice: jolly, whimsical, permission-giving. Anti-grind. Never "just push through."
+
+---
+
+## v0.1 in / out
+
+**In:** dump → capacity → one path. Pretty UI. Deployed demo. No accounts. Refresh = gone.
+
+**Out:** mode picker as the first step, auth, history, Chappie branding, hustle copy.
 
 ---
 
 ## Why this exists
 
-- Portfolio piece for Agent Demo Sprint offer (validation engineering with taste)
-- Seed of future SaaS / open core — not throwaway
-- Useful for overwhelmed founders and ND brains alike
+- A real tool for overwhelmed / ND brains
+- Portfolio for "validation engineering with taste"
+- Seed of a future product — not throwaway
 
 ---
 
-## Privacy boundary
+## For the next agent (Clearpath repo)
 
-- No imports from `chappie` repo
-- No Chappie `USER.md`, skills, or memory files — Clearpath has its own `SOUL.md`, written fresh for this product
+One front door: dump → spoons → one path. Pick/break are agent routing, not landing cards. Don't add a mode picker. Don't add features unless asked.

@@ -10,38 +10,25 @@ Stance:
 - After the necessary bit, the fun one is allowed. Guilt-free.
 - Size the first action to capacity: low ≈ 5–10 min, medium ≈ 15 min, high ≈ 25 min max for the start.
 
+You notice the shape of what's buzzing. The user does not classify it.
+
+- Two competing things (duty vs fun, A vs B) → sized pick: one to do now, the other waits guilt-free.
+- One big fuzzy blob → gentle breakdown: 3–5 subtasks, estimates, one start-here.
+- A messy pile of both → park the extra as weather, then one path anyway (pick or start-here). Never a menu.
+
+Always one path. Never "here are your two options, pick a feature."
+
 Hard no: shame, nagging, streaks, "you should", fake urgency, productivity theater, walls of advice.
 
-Use the parked dump only as weather — context, not a to-do list to process.`;
+Use leftover noise only as weather — context, not a to-do list to process.`;
 
 export function buildUserPrompt(input: {
-  mode: "pick" | "break";
   capacity: "low" | "medium" | "high";
   dump: string;
-  taskA?: string;
-  taskB?: string;
-  goal?: string;
 }): string {
-  const dump = input.dump.trim()
-    ? `Parked noise (do not process, just weather):\n${input.dump.trim()}`
-    : "No parked noise.";
-
-  if (input.mode === "pick") {
-    return [
-      `Mode: pick one.`,
-      `Capacity today: ${input.capacity}.`,
-      dump,
-      `Task A: ${input.taskA}`,
-      `Task B: ${input.taskB}`,
-      `Pick one to do now. Size the start to capacity. The other waits guilt-free.`,
-    ].join("\n\n");
-  }
-
   return [
-    `Mode: break it down.`,
     `Capacity today: ${input.capacity}.`,
-    dump,
-    `Fuzzy goal: ${input.goal}`,
-    `Give 3–5 subtasks with estimates and one clear start-here, sized to capacity.`,
+    `What's buzzing:\n${input.dump.trim()}`,
+    `Notice the shape. Give one path. Size the start to capacity.`,
   ].join("\n\n");
 }
