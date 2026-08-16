@@ -122,6 +122,13 @@ body {
   color: rgb(255 255 255 / 0.42);
 }
 
+.dump-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .continue {
   margin-top: var(--space-4);
   border: 0;
@@ -133,6 +140,8 @@ body {
   letter-spacing: -0.02em;
   cursor: pointer;
   touch-action: manipulation;
+  background: var(--color-on-color);
+  color: #4a5846;
   transition:
     background-color 200ms var(--ease-settle),
     color 200ms var(--ease-settle),
@@ -140,19 +149,7 @@ body {
     box-shadow var(--dur-press) var(--ease-settle);
 }
 
-.continue:disabled {
-  background: transparent;
-  color: rgb(255 255 255 / 0.4);
-  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.35);
-  cursor: not-allowed;
-}
-
-.continue:not(:disabled) {
-  background: var(--color-on-color);
-  color: #4a5846;
-}
-
-.continue:not(:disabled):active {
+.continue:active {
   transform: scale(0.98);
 }
 
@@ -739,7 +736,7 @@ body {
     transition-duration: var(--dur-reduced);
   }
 
-  .continue:not(:disabled):active,
+  .continue:active,
   .band:active:not(:disabled),
   .band:hover:not(:disabled) {
     transform: none;

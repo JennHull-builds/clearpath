@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { flushSync } from "react-dom";
 import { PathSheet } from "@/components/path-sheet";
 import { ENERGY_UNIT } from "@/lib/energy";
@@ -194,6 +194,17 @@ function DumpScene({
   onDumpChange: (value: string) => void;
   onContinue: () => void;
 }) {
+  const fieldRef = useRef<HTMLTextAreaElement>(null);
+
+  function submitDump(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!ready) {
+      fieldRef.current?.focus();
+      return;
+    }
+    onContinue();
+  }
+
   return (
     <section className="dump-scene">
       <p className="wordmark">Clearpath</p>
@@ -201,22 +212,20 @@ function DumpScene({
       <p className="dump-quiet">
         Tasks, noise, the fuzzy goal — all of it. No sorting.
       </p>
-      <textarea
-        className="dump-field"
-        value={dump}
-        onChange={(event) => onDumpChange(event.target.value)}
-        maxLength={4000}
-        placeholder="The responsible thing, the fun thing, dishes, that email, the vague project…"
-        aria-label="What's buzzing?"
-      />
-      <button
-        type="button"
-        className="continue"
-        onClick={onContinue}
-        disabled={!ready}
-      >
-        Continue
-      </button>
+      <form className="dump-form" onSubmit={submitDump}>
+        <textarea
+          ref={fieldRef}
+          className="dump-field"
+          value={dump}
+          onChange={(event) => onDumpChange(event.target.value)}
+          maxLength={4000}
+          placeholder="The responsible thing, the fun thing, dishes, that email, the vague project…"
+          aria-label="What's buzzing?"
+        />
+        <button type="submit" className="continue">
+          Continue
+        </button>
+      </form>
     </section>
   );
 }
