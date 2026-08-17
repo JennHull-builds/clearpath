@@ -2,7 +2,7 @@
   "name": "clearpath",
   "version": "0.1.0",
   "private": false,
-  "description": "Park the noise. See one path.",
+  "description": "Park the noise. See one path. (v0.1 experiment — parked)",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",

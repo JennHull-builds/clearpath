@@ -54,6 +54,17 @@ body {
   min-height: 100dvh;
 }
 
+.parked-note {
+  margin: 0;
+  padding: 0.65rem var(--page-pad-x);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgb(255 255 255 / 0.82);
+  background: rgb(61 67 60 / 0.22);
+}
+
 .app-frame {
   width: min(100%, 56rem);
   margin-inline: auto;

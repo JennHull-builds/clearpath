@@ -4,6 +4,8 @@
 
 *Built in public · v0.1*
 
+> **Parked for now.** This repo is a small working experiment — not an active product. The demo may stay online, but there's no roadmap, no support, and no promise of updates while I figure out what's next. What's here is what's here.
+
 ---
 
 Your head is loud. Your capacity isn't infinite. Clearpath helps you **park the buzzing stuff**, check in with how much juice you've got, and walk away with **one path** — sized for today, not a lecture.
@@ -45,11 +47,13 @@ Next.js 16 · React 19 · Tailwind v4 · AI SDK · Zod · Gemini (Google AI Stud
 
 ---
 
+## Status
+
+**Parked** — v0.1 shipped as a demo; development is on hold. Spec and design docs remain for reference. Ideas welcome, but please don't expect replies or merges on a timeline.
+
 ## Contributing / spec
 
-Building in public. Product scope, voice, and v0.1 boundaries live in [`PRODUCT.md`](./PRODUCT.md). Visual contract: [`DESIGN.md`](./DESIGN.md).
-
-Ideas and issues welcome — keep it kind.
+Product scope, voice, and v0.1 boundaries live in [`PRODUCT.md`](./PRODUCT.md). Visual contract: [`DESIGN.md`](./DESIGN.md).
 
 ---
 

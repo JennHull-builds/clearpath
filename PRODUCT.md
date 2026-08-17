@@ -2,6 +2,8 @@
 
 **Tagline:** Park the noise. See one path.
 
+**Status: parked.** v0.1 is a working demo, not an active build. This spec is frozen reference — not a roadmap.
+
 **Build in public.** MIT licensed. Separate from Jen's private coach repo — do not import or copy private files from there.
 
 ---

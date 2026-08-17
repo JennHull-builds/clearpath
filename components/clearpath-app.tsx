@@ -154,6 +154,9 @@ export function ClearpathApp() {
 
   return (
     <div className="app-shell">
+      <p className="parked-note">
+        Parked for now — v0.1 experiment. No roadmap yet.
+      </p>
       <main className="app-frame">
         {phase === "dump" ? (
           <DumpScene

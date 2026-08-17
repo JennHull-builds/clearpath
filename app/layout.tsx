@@ -13,6 +13,10 @@ const sans = DM_Sans({
 export const metadata: Metadata = {
   title: "Clearpath — Park the noise. See one path.",
   description: `Head too full, limited capacity. Dump what's buzzing, say how much ${ENERGY_UNIT} you've got, get one path for today.`,
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
